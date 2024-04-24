@@ -1,0 +1,8 @@
+La cláusula HAVING es una implemetacion que el sistema gestor de bases de datos SQL crea para complementar el condicionante WHERE, ya que el condicionante WHERE no permite utilizar funciones de agregación como SUM, MAX, MIN o AVG, es decir, con un condicionante WHERE no podemos crear consultas válidas que sean capaz de devolvernos los datos de los clientes que compraron más de 1000 productos durante un año
+
+En el ejercicio de encontrar un DUPLICADO, se está haciendo una partición de la tabla de todos los valores en filas de cada una de las variables o columnas de la tabla a excepción del id, el cual no puede ser igual y no se repite al ser una primary key.
+
+Cuando se aplica esta partición en cada valor se hace único los valores, es decir, cada row viene siendo una partición, y al utilizar la función agregada que en este caso es ROW_NUMBER() va a contar los valores de cada una de las particiones haciendo que se reinicie los “números de fila” cuando salta de partición en partición. por eso, cuando encuentra dos valores iguales, enumera los dos valores, dejando como valor en su row un 2.
+
+
+

@@ -1,0 +1,33 @@
+SELECT	lpad('(ツ)', s.a, '(ツ)')
+FROM platzi.alumnos AS a
+	INNER JOIN generate_series(3,30,3) AS s(a)
+	ON s.a = a.id
+ORDER BY s.a;
+.................................................
+SELECT lpad('\', id, '/') 
+FROM generate_series(0,50) as id
+...................................................
+SELECT lpad
+FROM ( SELECT s.a,
+        CASE 
+            WHEN s.a IN (1,10) THEN lpad('*', 2, '*')
+            WHEN s.a IN (2,9) THEN lpad('*', 4, '*')
+            WHEN s.a IN (3,8) THEN lpad('*', 6, '*')
+            WHEN s.a IN (4,7) THEN lpad('*', 8, '*')
+            WHEN s.a IN (5,6) THEN lpad('*', 10, '*')
+         END AS lpad 
+       FROM  generate_series(1,10) AS s(a)
+     ) AS series
+.....................................................
+SELECT lpad('>',s.a,'*')
+FROM generate_series(1,10) AS s(a);
+....................................................
+SOLUCION DEL PROFE:
+
+SELECT lpad('*', CAST(ordinality AS int), '*')
+FROM generate_series(10,2,-2) WITH ordinality;
+.....................................................
+SELECT lpad('\', s.a, rpad(lpad('/', d.e, ' '), s.a, '*'))
+FROM generate_series(18, 26) AS s(a), 
+	 generate_series(17,0,-2) AS d(e)
+LIMIT 10;

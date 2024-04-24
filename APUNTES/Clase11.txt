@@ -1,0 +1,43 @@
+Dentro del subquery lo que hace es comparar dos copias de la misma columna, por ejemplo
+
+
+a1.colegiatura = [2000, 4800, 1000, 5000, 3000] # Disctinct 
+a2.colegiatura = [2000, 4800, 1000, 5000, 3000] # Distinct
+Para cada valor, obtiene los valores que son mayores o igual a él
+
+
+2000 -> 3000, 5000, 4800, 2000
+4800 -> 5000, 4800
+1000 -> 3000, 5000, 4800, 2000, 1000
+5000 -> 5000
+3000 -> 3000, 5000, 4800
+Y finalmente obtiene la cuenta de ellos.
+
+
+colegiatura = [2000, 4800, 1000, 5000, 3000] 
+count = [4, 2, 5, 1, 3]
+Esto se traduce a un ordenamiento con indexación y es por eso que elegir el 2 nos dará el segundo valor de colegiatura más alto. Este método es muy poco eficiente porque requiere de n^2 pasos (hizo 5 comparaciones por los 5 valores) mientras que un order by requiere en promedio nlogn pasos.
+
+La primera parte :
+SELECT DISTINCT colegiatura FROM platzi.alumnos AS a1 
+
+Crea una tabla con los siguientes valores:
+
+[3000,2000,2300,4500,3500,5000,2500,4800]
+
+Luego el WHERE por concepto, compara fila por fila un valor, es decir manda el 1er valor a la subconsulta (3000), luego el segundo (2000) y así sucesivamente. En este caso, espera un 2:
+WHERE 2 = (Subconsutta)
+
+La subconsulta:
+SELECT COUNT(DISTINCT colegiatura) FROM platzi.alumnos AS a2 WHERE a1.colegiatura <= a2.colegiatura
+
+Es la misma que la primera, y lo que hace es comparar cada valor que le llega de la columna colegiatura con todos los valores de la misma columna:
+
+
+
+Imagen
+
+Y por último, recien actúa el COUNT, por lo que la subconsulta devuelve un valor de número, haciendo que el WHERE 2 = 2 se cumpla.
+
+Es un proceso innecesariamente largo, pero ayuda a comprender en que orden se ejecutan las sentencias
+

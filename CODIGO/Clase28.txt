@@ -1,0 +1,17 @@
+SELECT NTH_VALUE(colegiatura, 3) OVER(PARTITION BY carrera_id) AS primera_colegiatura, *
+FROM platzi.alumnos;
+.............................................................
+SELECT *,
+		RANK() OVER (PARTITION BY carrera_id ORDER BY colegiatura DESC) AS colegiatura_rank
+FROM platzi.alumnos
+ORDER BY carrera_id, colegiatura_rank;
+..................................................
+SELECT *,
+		DENSE_RANK() OVER (PARTITION BY carrera_id ORDER BY colegiatura DESC) AS colegiatura_rank
+FROM platzi.alumnos
+ORDER BY carrera_id, colegiatura_rank;
+.....................................................
+SELECT *,
+		PERCENT_RANK() OVER (PARTITION BY carrera_id ORDER BY colegiatura DESC) AS colegiatura_rank
+FROM platzi.alumnos
+ORDER BY carrera_id, colegiatura_rank;

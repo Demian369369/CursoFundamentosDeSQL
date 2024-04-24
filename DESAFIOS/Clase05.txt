@@ -1,0 +1,10 @@
+Aqui hay un reto que fue hacer un top 10 de los cursos con mas estudiantes usando el codigo de clase
+
+SELECT carrera, count(alumnos.id) as "Total de alumnos", vigente
+FROM platzi.alumnos 
+	JOIN platzi.carreras as carr
+		ON platzi.alumnos.carrera_id = carr.id
+WHERE vigente = true
+GROUP BY carrera, vigente
+ORDER BY "Total de alumnos" DESC
+LIMIT 10

@@ -1,0 +1,7 @@
+Lo que está explicando este profesor es sumamente importante, sus ejemplos tal cual te va a llegar en el requerimiento de parte de tus lideres. (en caso de querer seguir el path de data science) Por lo general luego de las reuniones de negocio o el cliente en cuestión, va a necesitar "la cantidad de usuarios que se registraron en el ultimo trimestre, pero que tengan mas de 3 interacciones diarias con la plataforma y tengan entre 24 y 28 años"
+
+Entonces tu capacidad de responder estas preguntas vía querys utilizando SQL va a hacer que tu perfil profesional se eleve. Recuerda siempre preguntar como se armaron las tablas de donde se están consultando los datos, ya que sumamente importante entender a la perfección cada feature para dar el valor que tu cliente necesita.
+
+Te deseo lo mejor !
+
+pd: yo estoy como ds y estoy repasando por 2 vez este curso y lo haría nuevamente las veces que sea necesario para poder refrescar mis conocimientos.

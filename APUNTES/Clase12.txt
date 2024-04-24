@@ -1,0 +1,9 @@
+el row_number() es como ir generando un indice, 
+y el over() es sobre que quieres ir haciendo ese indice. 
+ejemplo tienes filas con una columna 'categorias' que pueden ser 
+['A', 'A', 'B', 'C', 'C'] en total serian 5 filas.
+si aplico ROW_NUMBER OVER('categorias') les asigna un numero de fila por 
+categoria. El resultado seria una tabla de dos columnas: 
+id_row [1,2,1,1,2] y categorias ['A', 'A', 'B', 'C', 'C]. 
+Si no le paso ningun argumento a OVER() El resultado seria: 
+id_row [1,2,3,4,5 y categorias ['A', 'A', 'B', 'C', 'C'] 

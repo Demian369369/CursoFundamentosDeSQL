@@ -1,0 +1,35 @@
+SELECT * FROM platzi.alumnos
+WHERE (
+	id > (SELECT COUNT(id)/2 FROM platzi.alumnos)
+);
+................................................................................................
+SELECT *
+FROM platzi.alumnos
+WHERE id IN (
+	SELECT id
+	FROM platzi.alumnos
+	WHERE tutor_id <> 30
+);
+................................................................................................
+SELECT *
+FROM platzi.alumnos
+WHERE id NOT IN (
+	SELECT id
+	FROM platzi.alumnos
+	WHERE tutor_id = 30
+);
+................................................................................................
+SELECT *
+FROM platzi.alumnos
+WHERE tutor_id <> 30;
+
+................................................................................................
+SOLUCION DEL PROFE:
+
+SELECT *
+FROM platzi.alumnos
+WHERE id NOT IN (
+	SELECT id
+	FROM platzi.alumnos
+	WHERE tutor_id = 30
+);

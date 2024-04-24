@@ -1,0 +1,11 @@
+++Generando Rangos++
+
+Se hace con la función generate_series()
+Genera una tabla con una única columna dinámica
+Recibe tres parámetros
+El primero es el número de inicio de la serie
+El segundo es el final de la serie
+El tercero es el delta o paso, que puede ser negativo si hay overlap
+Overlap es cuando el numero de inicio > numero de final
+Se pueden utilizar fechas
+El delta se puede escribir literal para el caso de timestamps

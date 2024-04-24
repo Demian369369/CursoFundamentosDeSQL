@@ -1,0 +1,47 @@
+Window Functions
+
+¿Qué son?
+
+Realizan cálculos en algunas tuplas que se encuentran relacionadas con la tupla actual.
+
+¿Para que sirven?
+
+Evitan el uso de self joins y reduce la complejidad alrededor de la analítica, agregaciones y uso de cursores.
+
+
+++Window Functions++ Realizan cálculos que relacionan una tupla con el resto dentro de un mismo scope o partición.
+
+Evita el uso del self joins
+Reduce la complejidad alrededor de la analítica, agregaciones y cálculos
+Luego de una agregación, la función OVER dicta el scope de la window function, al realizar un PARTITION BY campo
+Si no se especifica un PARTITION BY, la funcion OVER() por default tomará toda la tabla
+También se puede usar ORDER BY campo, esto agrega un campo de granularidad al cálculo, a la vez que agrupa todos los valores iguales dentro de la partición, que ahora se encuentran ordenados
+
+SELECT *
+SUM(colegiatura) OVER (PARTITION BY carrera_id ORDER BY colegiatura)
+FROM platzi.alumnos;
+Podemos usar funciones de RANK()
+Las Window Function se procesan casi al final de todas las operaciones, por eso para usar estas WF como un campo en WHERE, debemos hacer un subquery
+
+SELECT *
+FROM (
+SELECT *,
+RANK() OVER (PARTITION BY carrera_id ORDER BY colegiatura DESC) AS brand_rank
+FROM platzi.alumnos
+) AS ranked_colegiaturas_por_carrera
+WHERE brand_rank < 3
+ORDER BY brand_rank;
+
+........................................
+++WINDOW FUNCTION:++
+
+Es la relacion que existe entre una Tupla o Row en particular y el resto de Rows en una particion o en un window frame (Es una seccion de la tabla que me interesa medir y medir cual es la relacion que existe entre uno de los rows y todo el resto de los rows que se encuentran en la particion)
+
+Cuando No le determino una particion, toma Como Window Frame o particion toda la Tabla.
+
+Ranking: Que lugar ocupa algo en nuestra tabla.
+
+Las Window Function corren al final casi de todo. Corren despues de Where, having, menos por Order By. Cuando hago el Where todavia No existe ese campo y arroja error.
+
+Para solucionar lo anterior debemos usar Sub-Queries.
+

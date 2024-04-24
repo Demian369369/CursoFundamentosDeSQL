@@ -1,0 +1,15 @@
+Extrayendo los primeros 5 registros de la tabla
+Usando FETCH
+
+SELECT * FROM platzi.alumnos FETCH FIRST 5 ROWS ONLY;
+Usando LIMIT
+
+SELECT * FROM platzi.alumnos LIMIT 5;
+Window Function
+
+SELECT *
+FROM (
+	SELECT ROW_NUMBER() OVER() AS row_id, *
+	FROM platzi.alumnos
+) AS alumnos_with_row_id
+FETCH FIRST 5 ROWS ONLY

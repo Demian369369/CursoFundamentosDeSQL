@@ -1,0 +1,6 @@
+Manejo SQL Server y Oracle constantemente , todo lo he aprendido de manera empirica , se crear Procedure , functions, disparadores y demas ; pero siempre lo he realziado investigando a la medida que necesito ; al realizar este curso aprendí manejo de funciones o datos curiosos que no sabia y que veo que pude haber aplicado en su momento para optimizar los query. Me gusto mucho como lo explicas .
+
+29. El futuro de SQL
+Big query machine learning
+Data warehouse
+Una sentencia que transforme un query de sql que lo transforma en un modelo con el cual puedo entrenar mis datos.

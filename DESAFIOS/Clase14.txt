@@ -1,0 +1,33 @@
+SELECT *
+    FROM platzi.alumnos
+    WHERE (EXTRACT(YEAR FROM fecha_incorporacion)) = 2018
+        AND (EXTRACT(MONTH FROM fecha_incorporacion)) = 05;
+........... ..........................................................
+SELECT *
+FROM platzi.alumnos
+WHERE (DATE_PART('YEAR', fecha_incorporacion)) = 2018 
+AND (DATE_PART('MONTH', fecha_incorporacion)) = 05 ;
+........................................................................
+SELECT *
+FROM platzi.alumnos
+WHERE fecha_incorporacion::text LIKE '2018-05%';
+..........................................................................
+select *
+FROM platzi.alumnos a
+where fecha_incorporacion >= '2018-05-01' and fecha_incorporacion  <  '2018-06-01'
+.......................................................................
+SELECT *
+FROM (
+	SELECT *,
+		DATE_PART('YEAR', fecha_incorporacion) AS anio_incorporacion,
+		DATE_PART('MONTH', fecha_incorporacion) AS mes_incorporacion
+	FROM platzi.alumnos
+) AS alumnos_con_anio
+WHERE anio_incorporacion = 2020 AND mes_incorporacion = 05;
+y así conseguimos todos los alumnos que se incorporaron en mayo del 2020.
+..........................................................................
+SOLUCION DEL PROFE:
+SELECT *
+    FROM platzi.alumnos
+    WHERE (EXTRACT(YEAR FROM fecha_incorporacion)) = 2018
+        AND (EXTRACT(MONTH FROM fecha_incorporacion)) = 05;

@@ -1,0 +1,22 @@
+Los tipos de rango que vienen en PostgreSQL son:
+
+int4range: Que trae un rango de enteros.
+
+int8range: Es un rango de enteros grandes.
+
+numrange: Es un rango numérico.
+
+tsrange: Es un rango del tipo timestamp pero sin la zona horaria.
+
+tstzrange: Es un rango del tipo timestamp con la zona horaria
+
+daterange: Es un rango del tipo fecha.
+Esos son los que podemos usar como selectores de rango dentro de PostgreSQL si les interesa conocer más Acá
+
+SACAR EL RANGO QUE HAY ENTRE TUTOR_ID Y CARRERA_ID
+
+SELECT int4range(min(tutor_id), max(tutor_id)) * int4range(min(carrera_id), max(carrera_id)) FROM platzi.alumnos;
+
+SACAR LOS DATOS QUE PERTENECEN AL RANGO ENTRE TUTOR_ID Y CARRERA_ID
+
+SELECT * FROM platzi.alumnos WHERE( SELECT int4range(MIN(tutor_id), MAX(tutor_id)) * int4range(MIN(carrera_id),MAX(carrera_id)) FROM platzi.alumnos ) @> tutor_id AND ( SELECT int4range(MIN(tutor_id), MAX(tutor_id)) * int4range(MIN(carrera_id),MAX(carrera_id)) FROM platzi.alumnos ) @> carrera_id;

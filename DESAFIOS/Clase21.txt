@@ -1,0 +1,22 @@
+/* TOKENIZANDO */
+SELECT rpad(SUBSTR(nombre, 1, 2),LENGTH(nombre),'*'), nombre,
+       rpad(SUBSTR(apellido, 1, 2),LENGTH(apellido),'*'), apellido,
+	   rpad(SUBSTR(email, 1, 2),LENGTH(email),'*'), email
+FROM platzi.alumnos
+...................................................................
+-- El Reemplazar el 10 por el número de filas que quieran probar
+SELECT CONCAT(
+        rpad(' ', - id +(2 *(10) -1), ' '),
+        lpad('*', id, '*')
+    ) AS piramide
+FROM (
+        SELECT id,
+            ROW_NUMBER() OVER(
+                ORDER BY id ASC
+            ) AS row_num
+        FROM platzi.alumnos
+    )
+WHERE row_num % 2 <> 0 -- Aquí tambien
+    AND row_num <= 2 *(10) -1;
+-- Nota: debido a la longitud de los datos, solo funcionará hasta las primeras
+-- 500 filas

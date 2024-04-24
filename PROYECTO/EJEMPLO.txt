@@ -1,0 +1,25 @@
+Test técnico de una empresa
+Hace una semana tuve un test de SQL para una empresa donde me 
+presentaban 3 tablas parecidas a las descritas en clase, 
+y me pedían que hiciera una query 
+(que si traducimos a los datos de este schema DB) 
+trayendo una lista de los alumnos (customers) con su respectivo 
+tutor_id (company) de la carrera (location) que tuviera más 
+alumnos (customers). 
+De acuerdo a este test hago un query para esta DB equivalente, 
+esto me ayudo a entender un poco también como es el 
+ambiente laboral con SQL y muestra las habilidades aprendidas en este curso.
+................................................................................................................................................................................................
+SELECT CONCAT(a.nombre, ' ', a.apellido),
+		a.tutor_id
+FROM platzi.alumnos AS a
+	JOIN platzi.carreras AS c
+	ON c.id = a.carrera_id
+WHERE c.id = (
+	SELECT c.id
+	FROM	platzi.carreras AS c
+		INNER JOIN platzi.alumnos AS a
+		ON a.carrera_id = c.id
+	GROUP BY c.id
+	ORDER BY COUNT(*) DESC LIMIT 1);
+................................................................................................................................................................................................

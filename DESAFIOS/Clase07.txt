@@ -1,0 +1,66 @@
+En esta clase usamos el where para definir cantidades especificas de las tablas en pgadmin4
+
+SELECT *
+FROM platzi.alumnos
+WHERE id = 1;
+
+SELECT *
+FROM platzi.carreras
+WHERE fecha_alta > '2018-05-13 00:11:20';
+
+SELECT *
+FROM platzi.carreras
+WHERE fecha_alta  < '2020-06-06 16:40:34';
+
+SELECT *
+FROM platzi.carreras
+WHERE fecha_alta > '2018-05-13 00:11:20'
+	AND  fecha_alta  < '2020-06-06 16:40:34';
+	
+SELECT * 
+FROM platzi.carreras
+WHERE fecha_alta 
+BETWEEN '2018-05-13 00:11:20' AND '2020-06-06 16:40:34';
+
+SELECT *
+FROM platzi.alumnos
+WHERE nombre = 'Wanda'
+AND (
+	apellido = 'Billington'
+	OR
+	apellido = 'Wakeley'
+);
+
+SELECT *
+FROM platzi.alumnos
+WHERE nombre = 'Wanda'
+AND apellido = 'Billington'
+OR apellido = 'Wakeley';
+
+SELECT *
+FROM platzi.alumnos
+WHERE nombre LIKE 'Wa%';
+
+SELECT * 
+FROM platzi.alumnos
+WHERE nombre LIKE '%da';
+
+SELECT *
+FROM platzi.alumnos
+WHERE nombre LIKE 'Wa_da';
+
+SELECT *
+FROM platzi.alumnos
+WHERE nombre NOT LIKE 'Wa_da';
+
+SELECT *
+FROM platzi.alumnos
+WHERE apellido IS NULL;
+
+SELECT * 
+FROM platzi.alumnos
+WHERE apellido IS NOT NULL;
+
+SELECT *
+FROM platzi.alumnos
+WHERE nombre IN ('Wanda', 'Tobe', 'Ruthe', 'Cindy');

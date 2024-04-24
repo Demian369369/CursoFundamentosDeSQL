@@ -1,0 +1,23 @@
+Breve historia de SQL
+SQL (Structured Query Language - Lenguaje de consulta estructurada) es un lenguaje que se basó en 2 principios fundamentales:
+
+Teoría de conjuntos.
+Álgebra relacional de Edgar Codd (científico informático inglés). ⠀
+⠀ SQL fue creada en 1974 por IBM. Originalmente fue llamado SEQUEL, posteriormente se cambió el nombre por problemas de derechos de autor. ⠀
+
+⠀⠀⠀⠀⠀⠀⠀⠀⠀ Relation Company (actualmente con el nombre Oracle) creó el software Oracle V2 en 1979.
+
+Mas adelante SQL se convertiría en un lenguaje estándar que unifica todo dentro de las bases de datos relacionales, se convierte en una norma ANSI o ISO.
+
+
+
+VERSION 2
+
+++HISTORIA DE SQL++ SQL (Structured Query Language) Se basa en dos principios fundamentales, los Conjuntos (diagramas de veen) y algebra relacional de Cood
+
+-Nace en los años 70s, creado por IBM -Originalmente se llamaba SEQUEL
+
+Versiones: -System/38(1979) -SQL/DS(1981) -DB28(1983)
+
+-RELATIONAL COMPANY(Oracle) Creo el software Oracle V2 en 1979 posteriormente se convierte en un lenguaje estándar, resolviendo un problema de ese entonces, ya que las base de datos estaban basadas en archivos, y buscar sobre de ellas era complicado SQL se convierte en el lenguaje estándar que unifica todo en las bases de datos relacionales obteniendo la norma ANSI/ISO
+

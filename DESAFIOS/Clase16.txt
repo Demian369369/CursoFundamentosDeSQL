@@ -1,0 +1,37 @@
+SELECT INT4RANGE(MIN(tutor_id),
+MAX(tutor_id)) * 
+INT4RANGE(MIN(carrera_id), 
+MAX(carrera_id))
+    FROM platzi.alumnos;
+..........................................
+SELECT *
+FROM platzi.alumnos
+WHERE tutor_id = carrera_id;
+..........................................
+SELECT 
+	numrange(min_carrera, max_carrera) * numrange(min_tutor, max_tutor)
+FROM (
+	SELECT 
+		MIN(carrera_id) as min_carrera,
+		MAX(carrera_id) as max_carrera,
+		MIN(tutor_id) as min_tutor,
+		MAX(tutor_id) as max_tutor
+	FROM alumnos
+) AS rangos
+...........................................
+SELECT *
+FROM platzi.alumnos
+WHERE int4range((SELECT MIN(tutor_id) FROM platzi.alumnos), (SELECT MAX(tutor_id) FROM platzi.alumnos)) @> carrera_id;
+................................................
+Solucion del profe
+SELECT 
+	numrange(min_carrera, max_carrera) * numrange(min_tutor, max_tutor)
+FROM (
+	SELECT 
+		MIN(carrera_id) as min_carrera,
+		MAX(carrera_id) as max_carrera,
+		MIN(tutor_id) as min_tutor,
+		MAX(tutor_id) as max_tutor
+	FROM alumnos
+) AS rangos
+............

@@ -1,0 +1,36 @@
+SELECT MIN(nombre)
+FROM alumnos;
+...................
+SELECT tutor_id,MIN(nombre)
+FROM alumnos
+GROUP BY tutor_id
+ORDER BY tutor_id;
+.......................
+SELECT numrange(MIN(tutor_id),MAX(tutor_id)) * numrange(MIN(carrera_id),MAX(carrera_id))
+FROM platzi.alumnos;
+...........................
+SELECT MIN(nombre)
+FROM platzi.alumnos
+GROUP BY nombre
+ORDER BY nombre DESC
+
+SELECT tutor_id, MIN(nombre)
+FROM platzi.alumnos
+GROUP BY tutor_id
+ORDER BY tutor_id DESC;
+............................
+--minimo nombre de alumnos
+SELECT MIN(nombre)
+FROM platzi.alumnos;
+
+--minimo nombre con id de tutor
+SELECT tutor_id, MIN(nombre)
+FROM platzi.alumnos
+GROUP BY tutor_id;
+..................................
+SOLUCION DEL PROFE:
+SELECT tutor_id,
+	MIN(nombre)
+FROM platzi.alumnos
+GROUP BY tutor_id
+ORDER BY tutor_id;

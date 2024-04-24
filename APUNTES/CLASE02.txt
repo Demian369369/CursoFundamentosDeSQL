@@ -1,0 +1,23 @@
+Álgebra relacional
+El álgebra relacional estudia basicamente las operaciones que se pueden realizar entre diversos conjuntos de datos. ⠀
+
+⠀ No confundir las relaciones del álgebra relacional con las relaciones de una base de datos relacional.
+
+Las relaciones de una base de datos es cuando unes dos tablas.
+Las relaciones en álgebra relacional se refiere a una tabla. - La diferencia es conceptual: Las tablas pueden tener tuplas repetidas pero en el álgebra relacional cada relación no tiene un cuerpo, no tiene un primer ni último row. ⠀
+Tipos de operadores
+Operadores unarios.- Requiere una relación o tabla para funcionar. - Proyección (π): Equivale al comando Select. Saca un número de columnas o atributos sin necesidad de hacer una unión con una segunda tabla. π<Nombre, Apellido, Email>(Tabla_Alumno) ⠀ - Selección (σ): Equivale al comando Where. Consiste en el filtrado de de tuplas. σ<Suscripción=Expert>(Tabla_Alumno) ⠀
+Operadores binarios.- Requiere más de una tabla para operar. - Producto cartesiano (x): Toma todos los elementos de una tabla y los combina con los elementos de la segunda tabla. Docentes_Quinto_A x Alumnos_Quinto_A ⠀ - Unión (∪): Obtiene los elementos que existen en una de las tablas o en la otra de las tablas. Alumnos_Quinto_A x Alumnos_Quinto_B ⠀ - Diferencia (-): Obtiene los elementos que existe en una de las tablas pero que no corresponde a la otra tabla. Alumnos_planExpertPlus - Alumnos_planFree
+
+
+++Algebra Relacional++ Estudia las operaciones que se pueden hacer entre los conjuntos de datos. Existen operadores Unarios (necesitan solo una tabla o relación, como se la llaman en AR, para operar) y operadores Binarios (usan 2 tablas para realizar las operaciones) Para el algebra relacional las tablas se denominan "relaciones" y las columnas "atributos"
+
+++Unarios:++
+
+Proyección (π): Nos permite seleccionar ciertos atributos de una relacion (columnas) y descartar los demás. Es equivalente al Select de sql. Forma: π<atributo1, atributo2> (nombre_relacion). Ejemplo: π<nombre, apellido> (Personas)
+Seleccion (σ): Nos permite seleccionar un subconjunto de tuplas de una relación que cumplen una determinada condición, es equivalente al Where de sql. Forma: σ<condicion> (nombre_relacion). Ejemplo: σ<salario > 1000> (Empleado)
+++Binarios:++
+
+** Producto cartesiano (x)**: Toma todos los elementos de una relación y los combina con todos los elementos de la otra realación. Forma: A x B
+Union (U): Forma: A U B. Da como resultado las tuplas que estan en A, en B o en ambas. Se eliminan las tuplas duplicadas, si se da el caso solo queda una.
+Diferencia (-): Forma: A - B. Como resultado da una relación con las tuplas que están en A pero no están en B.

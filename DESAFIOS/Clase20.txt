@@ -1,0 +1,197 @@
+SELECT maxCarrera.`carrera`
+,concat(ifnull(a.nombre,''),' ',ifnull(a.apellido,'')) as estudiante
+,concat(ifnull(t.nombre,''),' ',ifnull(t.apellido,'')) as tutor 
+FROM alumnos a
+INNER JOIN alumnos t on (t.id = a.tutor_id)
+INNER JOIN  
+  (SELECT ca.id, ca.carrera, count(a.carrera_id) cant_alumnos 
+   FROM  carreras ca
+   INNER JOIN  alumnos a on (a.carrera_id=ca.id)
+   GROUP BY  ca.id
+   ORDER BY cant_alumnos DESC
+   LIMIT 1
+) as maxCarrera on maxCarrera.id = a.carrera_id;
+.....................................................................
+-- LEFT JOIN EXCLUSIVO
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	LEFT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+WHERE c.id IS NULL;
+
+-- LEFT JOIN
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	LEFT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id DESC;
+
+-- RIGHT JOIN
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	RIGHT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id DESC;	
+
+-- RIGHT JOIN EXCLUSIVE
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	RIGHT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+WHERE a.id IS NULL
+ORDER BY c.id DESC;	
+
+-- INNER JOIN 
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	INNER JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id DESC;	
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id;	
+
+-- FULL OUTER 
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	FULL OUTER JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id;	
+
+-- EXCLUSIVE FULL OUTER JOIN
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	FULL OUTER JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+WHERE a.id IS NULL
+	OR c.id IS NULL
+ORDER BY a.carrera_id DESC,c.id DESC;	
+..........................................................
+Desafío:
+
+
+-- Left join exclusivo: Traigo todos los alumnos que no tienen info de carrera
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	LEFT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+WHERE c.id IS NULL;
+
+-- Left join: Traigo todos los alumnos, sin importar si tienen o no carreras
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	LEFT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id DESC;
+
+-- Right join: Traigo todas las carreras sin importar si tienen o no alumnos
+-- No veremos los alumnos que se inscribieron entre la 30 y 40 que no existen
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	RIGHT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id DESC;
+
+-- Right join exclusive: Solo las carreras que no tienen alumnos
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	RIGHT JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+WHERE a.id IS NULL
+ORDER BY c.id DESC;
+
+-- Join solo o Inner join: Aquello que tienen en comun ambas tablas
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	INNER JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id DESC; -- Join mas usado. 
+
+-- Ó
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+ORDER BY c.id DESC; -- Join mas usado. 
+
+-- Diferencia simétrica: Contrario al inner join: 
+-- Está en cada tabla pero no en la otra
+
+SELECT a.nombre,
+		a.apellido,
+		a.carrera_id,
+		c.id,
+		c.carrera
+FROM platzi.alumnos AS a
+	FULL OUTER JOIN platzi.carreras AS c
+	ON a.carrera_id = c.id
+WHERE a.id IS NULL
+	OR c.id IS NULL
+ORDER BY a.carrera_id DESC, c.id DESC;  

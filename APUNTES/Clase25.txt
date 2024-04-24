@@ -1,0 +1,24 @@
+++Bases de datos distribuidas++ Al realizar una consulta que involucre bases de datos distribuidas y bajo ciertos supuestos podemos resolverla de varias formas posibles, con resultados que se dan desde los 0.1s o 2s hasta las 5.56h dependiendo de cómo esté estructurado el query. . Existen cálculos que ayudan a preveer estos tiempos de respuesta, por ejemplo:
+
+Retraso total de comunicación = (Retraso total de acceso) + (volumen total de datos / tasa de transferencia)
+
+Queries distribuídos
+En el caso que la base de datos se encuentra distribuida en multiples regiones y la informacion se encuentra fragmentada la construccion de queries debe tener un debido nivel de analisis.
+
+Debido a que en una sola base de datos responder una misma pregunta puede tener multiples soluciones con diferencias de ejecuccion en el rango de milisegundos. Pero en las bases de datos distribuidas dependiendo de en donde se encuentre la informacion fisicamente, que informacion hay en cada region y que pregunta se quiere contestar, las diferentes formas de resolver la pregunta mediante una consulta SQL puede tener vastas diferencias en el tiempo de ejecucion,como ejemplo algunas soluciones pudiesen llegar al rango de 5 horas para ejecutarse y otras solamente necesitando 0.10 segundos.
+
+Federación de Consultas:
+La federación de consultas implica realizar consultas a través de varios nodos de una base de datos distribuida. Puede requerir el uso de un lenguaje de consulta distribuida, como SQL-MR (SQL MapReduce) o herramientas específicas de federación.
+
+Optimización de Consultas Distribuidas:
+Las consultas distribuidas a menudo requieren optimización para minimizar el tráfico de red y mejorar el rendimiento. Se utilizan técnicas como la distribución adecuada de datos, el particionamiento eficiente y la ejecución paralela de consultas. Ejemplo de Consulta Distribuida:
+
+Supongamos que tienes una base de datos distribuida con información de clientes en un nodo y sus transacciones en otro nodo.
+
+Una consulta distribuida podría ser obtener todas las transacciones de un cliente específico:
+
+
+SELECT *
+FROM nodo_clientes.clientes c
+JOIN nodo_transacciones.transacciones t ON c.id_cliente = t.id_cliente
+WHERE c.id_cliente = '123';

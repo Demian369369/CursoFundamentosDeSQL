@@ -1,0 +1,54 @@
+DELETE
+    FROM platzi.alumnos
+    WHERE id IN (SELECT id FROM (
+        SELECT *
+            FROM (SELECT id, ROW_NUMBER() OVER(
+            PARTITION BY 
+                nombre, apellido, 
+                email, colegiatura,
+                fecha_incorporacion, carrera_id,
+                tutor_id
+            ORDER BY id ASC) AS row
+            FROM platzi.alumnos
+    ) AS duplicados
+    WHERE duplicados.row > 1) AS duplicados_id);
+................................................................................................
+Primero certifique que existían correos duplicados.
+
+SELECT email,COUNT(*)
+FROM platzi.alumnos
+GROUP BY email
+HAVING COUNT(*) > 1;
+De esa forma obtuve el nombre del correo repetido, en base a ello, se que puedo realizar la agrupación por partición utilizando unicamente el correo.
+
+Ahora valido que obtengo el id del correo duplicado.
+
+SELECT id 
+FROM (
+	SELECT id, ROW_NUMBER() OVER(PARTITION BY email ORDER BY id) AS row
+	FROM platzi.alumnos
+) AS duplicados
+WHERE duplicados.row > 1;
+Una vez certificado que obtengo el id del dato duplicado, procedo a borrar el registro.
+
+
+DELETE FROM platzi.alumnos
+where id = (
+SELECT id 
+FROM (
+	SELECT id, ROW_NUMBER() OVER(PARTITION BY email ORDER BY id) AS row
+	FROM platzi.alumnos
+) AS duplicados
+WHERE duplicados.row > 1
+);
+......................................................................
+SOLUCION DEL PROFE:
+DELETE FROM platzi.alumnos
+where id = (
+SELECT id 
+FROM (
+	SELECT id, ROW_NUMBER() OVER(PARTITION BY email ORDER BY id) AS row
+	FROM platzi.alumnos
+) AS duplicados
+WHERE duplicados.row > 1
+);

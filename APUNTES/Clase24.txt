@@ -1,0 +1,172 @@
+Resumen: Las bases de datos distribuidas: es una colección de múltiples bases de datos separadas físicamente que se comunican mediante una red informática.
+
+VENTAJAS:
+
+-desarrollo modular. -incrementa la confiabilidad. -mejora el rendimiento. -mayor disponibilidad. -rapidez de respuesta.
+
+DESVENTAJAS:
+
+-Manejo de seguridad. -complejidad de procesamiento. -Integridad de datos más compleja. -Costo.
+
+TIPOS:
+
+Homogéneas: mismo tipo de BD, manejador y sistema operativo. (aunque esté distribuida). Heterogénea: puede que varíen alguna de los anteriores características. -OS -Sistema de bases de datos. -Modelo de datos.
+
+ARQUITECTURAS: -** cliente- servidor**: donde hay una BD principal y tiene varias BD que sirven como clientes o como esclavas que tratarán de obtener datos de la principal, a la que normalmente se hacen las escrituras.
+
+Par a par (peer 2 peer): donde todos los puntos en la red de bd son iguales y se hablan como iguales sin tener que responder a una sola entidad.
+multi manejador de bases de datos.
+ESTRATEGIA DE DISEÑO:
+
+top down: es cuando planeas muy bien la BD y la vas configurando de arriba hacia abajo de acuerdo a tus necesidades.
+bottom up: ya existe esa BD y tratas de construir encima.
+ALMACENAMIENTO DISTRIBUIDO:
+
+-Fragmentación: qué datos van en dónde.
+
+fragmentación horizontal: (sharding) partir la tabla que estás utilizando en diferentes pedazos horizontales.
+
+fragmentación vertical: cuando parto por columnas.
+
+fragmentación mixta: cuando tienes algunas columnas y algunos datos en un lugar y algunas columnas y algunas tuplas en otro lugar.
+
+-Replicación: tienes los mismos datos en todas ala BBDD no importa donde estén.
+
+-replicación completa: cuando toda al BD está en varias versiones a lo largo del globo, toda la información está igualita en todas las instancias de BD. -replicación parcial: cuando algunos datos están replicados y compartidos en varias zonas geográficas -sin replicación: no estás replicando nada de los datos, cada uno está completamente separa y no tienen que estarse hablando para sincronizar datos entre ellas.
+
+DISTRIBUCIÓN DE DATOS:
+
+-Distribución: cómo va a pasar la data entre una BD y otra. Tiene que ver mucho con networking, tiempos, latencia, etc. Pueden ser:
+
+Centralizada: cuando la distribuyes des un punto central a todas las demás Particionada: está partida en cada una de las diversas zonas geográficas y se comparten información entre ellas. Replicada: tener la misma información en todas y entre ellas se hablan para siempre tener la misma versión.
+
+.........................................
+
+++Bases de datos distribuidas++ Son bases de datos ubicadas físicamente separadas pero se encuentran conectadas a través de una red informática.
+
+++Ventajas++
+
+Desarrollo modular: se pueden destinar a diferentes usos o usuarios, por ejemplo usuarios por país
+Incrementa la confiabilidad
+Mejora el rendimiento, al ser un subset de datos
+Mayor disponibilidad
+++Desventajas++
+
+Manejo de seguridad: la infraestructura se multiplica, es más cara, lleva más mantenimiento
+Complejidad de procesamiento: cuando preciso más datos de los que tengo en mi módulo o subset
+Integridad de datos más compleja
+Costos incrementados en general
+++Homogéneas vs Heterogéneas++ De acuerdo a si utilizan o no los siguientes en la misma medida independientemente del módulo
+
+OS (Windows, Linux)
+Sistema de base de datos (PostgreSQL, Oracle)
+Modelos de datos
+++Arquitecturas++
+
+Cliente - Servidor
+Peer 2 Peer
+Multi manejador de base de datos
+++Estrategias de diseño++
+
+Top down: planeada estratégicamente, instancias, jerarquías, desde las necesidades
+Bottom up: cuando ya existen servidores corriendo y no conviene empezar de cero
+++Almacenamiento distribuido++
+
+Fragmentación: cuando unos datos están en un lado y otros en otro
+Replicación: los datos están replicados en más de una locación
+Distribución: es importante pensar en netwroks, latencia, etc.
+++Fragmentación++
+
+Horizontal: los datos de un país en un país, del otro país en otro lugar, etc.
+Vertical: ciertos campos o columnas en una base de datos y otros campos en otra
+Mixta
+++Replicación++
+
+Parcial: algunos datos están replicados
+Completa: todos los datos están en todas las bases
+Sin replicación
+++Distribución de datos++
+
+Centralizada
+Particionada
+Replicada
+..............................................
+24. Bases de datos distribuidas
+¿Qué es?
+
+Es una colección de múltiples bases de datos separadas físicamente
+
+Ventajas
+
+Desarrollo modular.
+Incrementa la confiabilidad.
+Mejora el rendimiento.
+Mayor disponibilidad.
+Rapidez de respuesta.
+Desventajas
+
+Manejo de seguridad.
+Complejidad de procesamiento.
+Integridad de datos más compleja.
+Costo.
+Homogéneas y hetereogéneas
+
+OS
+Sistema de base de datos
+Modelos de datos
+Arquitecturas
+
+Cliente - servidor.
+Peer 2 Peer
+Multi manejador de base de datos
+Estrategias de diseño
+
+Top down
+Bottom up
+Almacenamiento distribuido
+
+Fragmentación
+Replicación
+Distribución
+Fragmentación
+
+Horizontal
+Vertical
+Mixta
+Replicación
+
+Completa
+Parcial
+Sin replicación
+Distribución de los datos
+
+Centrada
+Particionada
+Replicada
+...........................................
+Las bases de datos distribuidas son sistemas de gestión de bases de datos en los que los datos están distribuidos entre múltiples nodos o servidores, ya sea geográficamente o dentro de una red. Este enfoque tiene como objetivo mejorar la escalabilidad, la disponibilidad y la tolerancia a fallos.
+
+Distribución de Datos:
+Fragmentación: Dividir una tabla en fragmentos más pequeños. Puede ser horizontal (filas) o vertical (columnas). Repliegue: Copiar fragmentos de datos en varios nodos.
+Transparencia de Distribución:
+Transparencia de ubicación: Los usuarios no necesitan conocer la ubicación física de los datos. Transparencia de fragmentación: Los usuarios no necesitan conocer cómo se han fragmentado los datos.
+Transacciones Distribuidas:
+Atomicidad: Garantiza que todas las operaciones de una transacción se realicen con éxito o ninguna.
+Consistencia: Mantiene la coherencia de la base de datos antes y después de una transacción.
+Aislamiento: Garantiza que una transacción no afecte a otras que se estén ejecutando simultáneamente.
+Durabilidad: Asegura que los cambios de una transacción persistan incluso después de un fallo del sistema.
+Control de Concurrencia:
+Bloqueo: Evitar que varios usuarios actualicen los mismos datos simultáneamente. Concurrencia Optimista: Permitir que múltiples transacciones actualicen datos y resolver conflictos al final de la transacción.
+Recuperación y Tolerancia a Fallos:
+Backup y recuperación: Estrategias para respaldar datos y recuperarse de fallos. Tolerancia a fallos: Mantener la disponibilidad y funcionalidad incluso en caso de fallos.
+Consistencia y Replicación:
+Consistencia eventual: Permite que los nodos diverjan temporalmente y luego se vuelvan a sincronizar. Réplica síncrona y asíncrona: Sincronización inmediata o diferida de datos entre nodos.
+Planificación y Optimización de Consultas:
+Optimización distribuida: Planificación de consultas considerando la distribución de datos.
+Seguridad y Privacidad:
+Seguridad distribuida: Gestión de la seguridad en entornos distribuidos.
+Privacidad: Garantizar la privacidad de los datos, especialmente en transferencias entre nodos.
+Protocolos de Comunicación:
+Protocolos de comunicación distribuida: Métodos para la comunicación entre nodos, como RPC (Remote Procedure Call) o mensajes.
+Escalabilidad Horizontal:
+Añadir nodos: Añadir servidores para aumentar la capacidad de almacenamiento y procesamiento.

@@ -1,0 +1,56 @@
+GROUP BY especifica por qué campos se agrupan las agregaciones
+LIMIT especifica la cantidad de registros, en SQL Server se llama TOP y va después de SELECT
+OFFSET especifica a partir de qué registro se trae la consulta, luego puede venir LIMIT para cerrar el rango. En SQL Server es FETCH NEXT
+
+En SQL Sever no existe el comando limit, en cambio se usa el comando TOP que va despues del SELECT ex:
+
+
+SELECT TOP 10 * 
+FROM Tabla_diaria as A
+JOIN Tabla_semanal as B
+on A.col1 = B.col1
+
+HAVING es una clausula también bastante usada para especificar condiciones, se usa despues de agrupar los datos
+
+
+SELECT  name, SUM(sales)
+FROM tabla_diaria
+GROUP BY name
+HAVING SUM(sales) > 100
+
+Agregación y limitantes GROUP BYyLIMIT(SELECT TOP porque no existe LIMIT en SQL)
+GROUP BY es una sentencia que agrupa filas que tienen el mismo valor en columnas con el sumatorio. Como decirle 'encuentra el número de clientes en cada país'.
+
+Suele usarse frecuentemente con las funciones COUNT MAX MIN MAX SUM AVG a un grupo de una o más columnas.
+
+
+SELECT *
+FROM tabla_diaria
+GROUP BY marca;
+
+SELECT *
+FROM tabla_diaria;
+GROUP BY marca, modelo;
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+ORDER BY COUNT(CustomerID) DESC;
+SELECT TOP es usada para especificar el número de registros que se van a retornar.
+
+SELECT TOP es útil para tablas con miles de registros, pues un gran número de registros puede afectar el rendimiento.
+
+
+SELECT TOP number
+FROM table1
+WHERE condition;
+
+SELECT TOP 1500
+FROM tabla_diaria;
+
+
+OFFSET se podría mejorar:
+
+
+SELECT * FROM tabla_diaria OFFSET 1500 LIMIT 1500;
+En el ejemplo anterior cuando pasen los 1500 registros (Especificado POR OFFSET), obtendremos los 1500 registros siguientes (Especificado por LIMIT).

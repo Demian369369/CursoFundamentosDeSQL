@@ -1,0 +1,114 @@
+Proyección significa elegir QUE columnas (o expresiones) la consulta debe retornar. Selección significa CUALES SON las columnas retornadas.
+
+
+Supongamos la siguiente consulta:  
+
+select *Columna1, Columna2, Columna3* from *table_1* where ***n=3***;
+La proyección sería: Columna1, Columna2 y Columna3 y la parte de Selección es n*=3,* debido a esto es que denominamos a la clausula SELECT como la proyección y los filtros aplicados en la clausula WHERE como Selección.
+
+La Consulta más Básica sería
+
+
+SELECT * FROM Tabla1;
+El astrisco (*) es un comodín que indica que queremos traer una proyección completa (Todos los campos o columnas existentes en la tabla)
+
+Alias
+Un alias (..AS...), es otra forma de llamar a una tabla o a una columna, y se utiliza para simplificar las sentencias SQL cuando los nombres de tablas o columnas son largos o complicados.
+
+SELECT Columna1 AS Alias1 FROM Tabla1; (Para referirnos a la Columna1, podremos denominarla como Alias1)
+
+.. .
+
+Funciones de agregación
+Las funciones de agregación en SQL nos permiten efectuar operaciones sobre un conjunto de resultados, pero devolviendo un único valor agregado para todos ellos. Es decir, nos permiten obtener medias, máximos, etc... sobre un conjunto de valores.
+
+Las funciones de agregación básicas que soportan todos los gestores de datos son las siguientes:
+
+COUNT: devuelve el número total de filas seleccionadas por la consulta, como particularidad se puede usar COUNT()* donde contará todos los registros de la tabla incluyendo nulos.
+MIN: devuelve el valor mínimo del campo que especifiquemos.
+MAX: devuelve el valor máximo del campo que especifiquemos.
+SUM: suma los valores del campo que especifiquemos. Sólo se puede utilizar en columnas numéricas.
+AVG: devuelve el valor promedio del campo que especifiquemos. Sólo se puede utilizar en columnas numéricas.
+.
+Función IF()
+Función que evalúa una sola expresión y retorna lo que se le especifica en el caso que sea Verdadera o Falsa
+
+
+IF (expresion, resultado_true, resultado_else)
+Función CASE()
+Sirve para evaluar una lista de condiciones y retornar uno o múltiples posibles resultados.
+
+Comienza con la sentencia CASE, luego evalua expresiones comenzando con WHEN y en caso que sea verdadera, devolverá el resultado especificado para esa condición luego del THEN.. . La sentencia ELSE es opcional y devolverá este valor en caso que todas las condiciones WHEN anteriores sean Falsas.
+
+Si todas las condiciones son falsas, y no existe la clausula ELSE, se devolverá NULL.
+
+
+CASE 
+   WHEN eval_1 THEN resultado_1
+   WHEN eval_2 THEN resultado_2
+      ...
+   WHEN value_n THEN resultado_n
+   ELSE resultado
+END AS ValorResultado;
+
+
+
+Puedes asignar alias con “AS” (Muy potente)
+
+COUNT() Cuenta el número de elementos que existen en todas las tuplas de la base de datos
+
+SUM() Toma la columna que le digas y suma sus valores de forma consecutiva
+
+AVE() (De AVErage) Saca el valor promerdio de toda la columna
+
+Al igual que otros lenguajes puedes hacer “IF” con un montón de posibilidades.
+
+
+Todos los registros
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS;
+Alias
+
+
+SELECT nombre as "name",
+	   apellido as "last name"
+  FROM PRUEBAS.ALUMNOS;
+Conteo
+
+
+SELECT COUNT(id)
+  FROM PRUEBAS.ALUMNOS;
+Sumatoria
+
+
+SELECT SUM(colegiatura)
+  FROM PRUEBAS.ALUMNOS;
+Promedio
+
+
+SELECT AVG(colegiatura)
+  FROM PRUEBAS.ALUMNOS;
+Minimo
+
+
+SELECT MIN(colegiatura)
+  FROM PRUEBAS.ALUMNOS;
+Maximo
+
+
+SELECT MAX(colegiatura)
+  FROM PRUEBAS.ALUMNOS;
+Case
+
+
+SELECT nombre,
+	   apellido,
+	   colegiatura,
+  CASE
+  	WHEN (colegiatura > 4000) THEN 'Mayor a 4000'
+  	WHEN (colegiatura = 2000) THEN 'Igual a 2000'
+  	ELSE 'Mayor a 2000 y menor que 4000'
+  END costo
+FROM pruebas.alumnos;

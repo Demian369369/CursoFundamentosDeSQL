@@ -1,0 +1,204 @@
+Fuente: https://www.w3schools.com/sql/sql_where.asp
+
+Selección(where)
+WHERE es usado para filtrar registros. WHERE es cuando para extraer solamente las condiciones que cumplen con esa condición.
+
+
+SELECT *
+FROM tabla_diaria
+WHERE id=1;
+
+SELECT *
+FROM tabla_diaria
+WHERE cantidad>10;
+
+SELECT *
+FROM tabla_diaria
+WHERE cantidad<100;
+Este puede ser combinado con AND ,OR y NOT.
+
+AND y OR son usados para filtrar registros de más de una condición.
+
+AND muestra un registro si todas las condiciones separadas por AND son TRUE.
+OR muestra un registro si alguna de las condiciones separadas por OR son TRUE.
+
+SELECT *
+FROM tabla_diaria
+WHERE cantidad > 10
+	AND cantidad < 100;
+
+SELECT *
+FROM tabla_diaria
+WHERE cantidad BETWEEN 10
+	AND cantidad < 100;
+BETWEEN puede ser usado para definir límites.
+
+La separación por paréntesis es muy importante.
+
+
+SELECT * 
+FROM users
+WHERE name = "Israel"
+	AND (
+	lastname = "Vázquez"
+	OR
+	lastname = "López"
+);
+
+SELECT * 
+FROM users
+WHERE name = "Israel"
+	AND 
+	lastname = "Vázquez"
+	OR
+	lastname = "López";
+En el primero va a devolver todos los que son Israel Vázquez o Israel López, en el segundo devolverá a todos los que se llaman Israel Vázquez o se apellida López(sólo apellido).
+
+NOT valida que un dato no sea TRUE.
+
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE NOT condition;
+Para especificar patrones en una columna usamos LIKE. Podemos mostrar diferentes cosas que buscamos.
+
+
+SELECT *
+FROM users
+WHERE name LIKE "Is%";
+
+SELECT *
+FROM users
+WHERE name LIKE "Is_ael";
+
+SELECT *
+FROM users
+WHERE name NOT LIKE "Is_ael";
+En el primero, colocamos un % para representar que se va a buscar lo que tenga is% pero que no importa los carácteres después de %.
+En el segundo le estamos diciendo con _ que puede haber lo que sea en medio de Is y ael.
+Y en el último le decimos que ponga todas las filas que no sean igual a lo que arriba estabamos buscando.
+Igual podemos decir que nos traiga registros que estén vacíos o que no lo estén.
+
+
+
+SELECT * 
+FROM users
+WHERE name IS NULL;
+
+SELECT *
+FROM users
+WHERE name IS NOT NULL;
+Y para seleccionar filas con datos específicos, usamos IN.
+
+
+SELECT *
+FROM users
+WHERE name IN ('Israel','Laura','Luis');
+
+En el operador LIKE Hay 2 comodines que usan comunmente:
+
+% - El signo de porcentaje representa 0 o mas caracteres.
+_ - El guion bajo representa un unico caracter.
+Fuente: https://www.w3schools.com/sql/sql_like.asp
+
+
+
+
+Igual
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE colegiatura = 2000;
+Mayor que
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE colegiatura > 2000;
+Menor que
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE colegiatura < 4000;
+Entre
+
+Opcion No. 1
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE colegiatura > 2000
+   AND colegiatura < 4000;
+Opcion No. 2
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE colegiatura BETWEEN 2000 AND 4000;
+And y Or
+
+Opcion No. 1
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre = 'Edin'
+   AND (apellido = 'Keatch' OR apellido = 'Grishin');
+Opcion No. 2
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre = 'Edin'
+   AND apellido = 'Keatch' 
+    OR apellido = 'Grishin';
+Comodin que empieza con Al
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre LIKE 'Al%';
+Comodin que termina con Al
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre LIKE '%er';
+Comodin que contiene con er
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre LIKE '%er%';
+Comodin que no contiene con er
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre NOT LIKE '%er%';
+Comodin que varia la ultima letra
+
+
+SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre LIKE 'Ali_'
+Null
+
+
+  SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE apellido IS NULL;
+Not Null
+
+
+  SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE apellido IS NOT NULL;
+In
+
+
+ SELECT *
+  FROM PRUEBAS.ALUMNOS
+ WHERE nombre IN ('Wanda', 'Hilde', 'Veriee');
